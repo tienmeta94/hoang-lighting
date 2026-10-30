@@ -2,6 +2,8 @@ import { HashRouter, Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './pages/Home'
+import ProductList from './pages/ProductList'
+import ProductDetail from './pages/ProductDetail'
 import Placeholder from './pages/Placeholder'
 
 // HashRouter để chạy tốt trên GitHub Pages (không cần cấu hình server cho route con).
@@ -13,14 +15,8 @@ export default function App() {
         <div className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route
-              path="/san-pham"
-              element={<Placeholder title="Danh sách sản phẩm" milestone="mốc M2" />}
-            />
-            <Route
-              path="/san-pham/:slug"
-              element={<Placeholder title="Chi tiết sản phẩm" milestone="mốc M2" />}
-            />
+            <Route path="/san-pham" element={<ProductList />} />
+            <Route path="/san-pham/:slug" element={<ProductDetail />} />
             <Route path="/gio-hang" element={<Placeholder title="Giỏ hàng" milestone="mốc M3" />} />
             <Route path="/dat-hang" element={<Placeholder title="Đặt hàng" milestone="mốc M3" />} />
             <Route
