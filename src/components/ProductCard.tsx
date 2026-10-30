@@ -29,7 +29,7 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       to={`/san-pham/${product.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-stone-200/70 transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-stone-200/70 transition duration-300 hover:-translate-y-1 hover:shadow-lg"
     >
       <div className="relative overflow-hidden transition-transform duration-300 group-hover:scale-[1.03]">
         <ProductImage category={product.category} name={product.name} image={product.image} />

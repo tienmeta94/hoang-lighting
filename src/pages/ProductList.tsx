@@ -7,6 +7,7 @@ import { formatVND } from '../lib/format'
 import { normalizeVi } from '../lib/text'
 import { usePageTitle } from '../lib/usePageTitle'
 import ProductCard from '../components/ProductCard'
+import Reveal from '../components/Reveal'
 
 interface PriceRange {
   id: string
@@ -205,8 +206,10 @@ export default function ProductList() {
             </div>
           ) : (
             <div className="grid grid-cols-2 gap-4 xl:grid-cols-3">
-              {filtered.map((p) => (
-                <ProductCard key={p.id} product={p} />
+              {filtered.map((p, i) => (
+                <Reveal key={p.id} delay={(i % 6) * 50} className="h-full">
+                  <ProductCard product={p} />
+                </Reveal>
               ))}
             </div>
           )}

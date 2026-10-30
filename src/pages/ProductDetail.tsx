@@ -18,6 +18,7 @@ import { discountPercent, formatVND } from '../lib/format'
 import { useCart } from '../store/cart'
 import { usePageTitle } from '../lib/usePageTitle'
 import ProductCard from '../components/ProductCard'
+import Reveal from '../components/Reveal'
 import ProductImage from '../components/ProductImage'
 
 export default function ProductDetail() {
@@ -208,8 +209,10 @@ export default function ProductDetail() {
       <section className="mt-12">
         <h2 className="text-2xl font-extrabold tracking-tight text-stone-900">Sản phẩm liên quan</h2>
         <div className="mt-5 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {relatedFilled.map((p) => (
-            <ProductCard key={p.id} product={p} />
+          {relatedFilled.map((p, i) => (
+            <Reveal key={p.id} delay={(i % 4) * 70} className="h-full">
+              <ProductCard product={p} />
+            </Reveal>
           ))}
         </div>
       </section>

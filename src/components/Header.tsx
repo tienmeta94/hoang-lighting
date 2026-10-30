@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Lightbulb, Phone, ShoppingCart, Truck } from 'lucide-react'
 import { shop } from '../config'
@@ -12,8 +13,17 @@ const navItems = [
 
 export default function Header() {
   const { count } = useCart()
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
   return (
-    <header className="sticky top-0 z-40 shadow-sm">
+    <header
+      className={`sticky top-0 z-40 transition-shadow duration-300 ${scrolled ? 'shadow-lg shadow-stone-900/5' : 'shadow-sm'}`}
+    >
       <div className="bg-stone-900 text-stone-200">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-1.5 text-xs">
           <span className="inline-flex items-center gap-1.5">
@@ -45,8 +55,8 @@ export default function Header() {
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) =>
-                  `text-sm font-medium transition hover:text-amber-600 ${
-                    isActive ? 'text-amber-600' : 'text-stone-700'
+                  `relative py-1 text-sm font-medium transition after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:rounded-full after:bg-amber-500 after:transition-all after:duration-300 hover:text-amber-600 hover:after:w-full ${
+                    isActive ? 'text-amber-600 after:w-full' : 'text-stone-700 after:w-0'
                   }`
                 }
               >

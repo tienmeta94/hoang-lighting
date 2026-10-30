@@ -44,11 +44,134 @@ button:not(:disabled) {
   animation: cart-pop 0.35s ease;
 }
 
+/* --- Hệ thống hiệu ứng (bản nâng cấp UI) --- */
+
+/* Hiện dần từ dưới lên — dùng cho hero (chạy ngay) và các khối .reveal (chạy khi cuộn tới) */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+/* Khối chờ cuộn tới: ẩn nhẹ, khi .is-visible thì hiện lên (component Reveal điều khiển) */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Đốm sáng bay lơ lửng trong hero */
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-16px) translateX(8px);
+  }
+}
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+/* Quầng sáng "thở" nhẹ sau lưới sản phẩm hero */
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.06);
+  }
+}
+.animate-glow {
+  animation: glow-pulse 6s ease-in-out infinite;
+}
+
+/* Dải chữ chạy ngang (marquee) — nội dung được nhân đôi để lặp liền mạch */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee-x 26s linear infinite;
+}
+.marquee-paused:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* Chuyển trang: nội dung trang mới mờ/hiện lên nhanh */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.page-enter {
+  animation: page-in 0.35s ease both;
+}
+
+/* Ánh sáng quét qua nút chính khi hover */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.45) 50%, transparent 60%);
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+.btn-shine:hover::after {
+  transform: translateX(120%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .animate-cart-pop {
+  .animate-cart-pop,
+  .animate-fade-up,
+  .animate-float-slow,
+  .animate-glow,
+  .animate-marquee,
+  .page-enter {
     animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .btn-shine::after {
+    display: none;
   }
 }
