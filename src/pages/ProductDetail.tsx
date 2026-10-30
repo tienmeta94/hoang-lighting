@@ -31,7 +31,6 @@ export default function ProductDetail() {
   useEffect(() => {
     setQty(1)
     setAdded(false)
-    window.scrollTo({ top: 0 })
   }, [slug])
 
   if (!product) {
@@ -61,7 +60,7 @@ export default function ProductDetail() {
       : [...related, ...products.filter((p) => p.category !== product.category && p.id !== product.id)].slice(0, 4)
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-8">
+    <main className="mx-auto max-w-6xl px-4 py-8 pb-28 lg:pb-8">
       {/* Breadcrumb */}
       <nav className="flex flex-wrap items-center gap-1 text-sm text-stone-500" aria-label="Breadcrumb">
         <Link to="/" className="hover:text-amber-600">Trang chủ</Link>
@@ -212,6 +211,39 @@ export default function ProductDetail() {
           ))}
         </div>
       </section>
+
+      {/* Thanh mua hàng dính đáy — chỉ mobile/tablet nhỏ */}
+      <div className="fixed bottom-3 left-3 right-20 z-40 flex items-center gap-3 rounded-2xl bg-white/95 p-3 shadow-xl ring-1 ring-stone-200 backdrop-blur lg:hidden">
+        <div className="min-w-0 shrink-0">
+          <div className="text-base font-extrabold leading-tight text-red-600">
+            {formatVND(product.price)}
+          </div>
+          {product.oldPrice && (
+            <div className="text-xs leading-tight text-stone-400 line-through">
+              {formatVND(product.oldPrice)}
+            </div>
+          )}
+        </div>
+        <button
+          onClick={() => {
+            add(product.id, qty)
+            setAdded(true)
+          }}
+          aria-label="Thêm vào giỏ"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-stone-900 ring-1 ring-stone-300 transition active:bg-stone-100"
+        >
+          {added ? <Check className="h-5 w-5 text-emerald-600" /> : <ShoppingCart className="h-5 w-5" />}
+        </button>
+        <button
+          onClick={() => {
+            add(product.id, qty)
+            navigate('/dat-hang')
+          }}
+          className="flex-1 rounded-full bg-amber-400 py-3 font-semibold text-stone-900 transition active:bg-amber-300"
+        >
+          Mua ngay
+        </button>
+      </div>
     </main>
   )
 }

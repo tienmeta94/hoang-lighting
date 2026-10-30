@@ -75,18 +75,18 @@ export default function Cart() {
                   <div className="inline-flex items-center rounded-full ring-1 ring-stone-300">
                     <button
                       onClick={() => setQty(product.id, qty - 1)}
-                      className="px-2.5 py-1.5 text-stone-600 transition hover:text-amber-600"
+                      className="px-3 py-2.5 text-stone-600 transition hover:text-amber-600"
                       aria-label="Giảm số lượng"
                     >
-                      <Minus className="h-3.5 w-3.5" />
+                      <Minus className="h-4 w-4" />
                     </button>
                     <span className="min-w-7 text-center text-sm font-bold">{qty}</span>
                     <button
                       onClick={() => setQty(product.id, qty + 1)}
-                      className="px-2.5 py-1.5 text-stone-600 transition hover:text-amber-600"
+                      className="px-3 py-2.5 text-stone-600 transition hover:text-amber-600"
                       aria-label="Tăng số lượng"
                     >
-                      <Plus className="h-3.5 w-3.5" />
+                      <Plus className="h-4 w-4" />
                     </button>
                   </div>
                   <span className="font-bold text-stone-900">{formatVND(product.price * qty)}</span>

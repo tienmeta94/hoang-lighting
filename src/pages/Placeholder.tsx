@@ -15,8 +15,9 @@ export default function Placeholder({
       </span>
       <h1 className="mt-4 text-2xl font-extrabold text-stone-900">{title}</h1>
       <p className="mt-2 max-w-md text-sm leading-relaxed text-stone-500">
-        Trang này thuộc {milestone} trong kế hoạch xây dựng web và sẽ được hoàn thiện ở bước tiếp
-        theo. Hiện tại bạn đang xem bản khung M1 (trang chủ + giao diện chung).
+        {milestone
+          ? `Trang này thuộc ${milestone} trong kế hoạch xây dựng web và sẽ được hoàn thiện ở bước tiếp theo.`
+          : 'Đường dẫn này không tồn tại hoặc đã thay đổi. Bạn quay lại trang chủ để tiếp tục xem đèn nhé.'}
       </p>
       <Link
         to="/"

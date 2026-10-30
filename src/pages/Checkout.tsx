@@ -259,6 +259,7 @@ export default function Checkout() {
               </label>
               <input
                 id="co-name"
+                autoComplete="name"
                 value={customer.name}
                 onChange={(e) => setCustomer({ ...customer, name: e.target.value })}
                 placeholder="Ví dụ: Nguyễn Văn A"
@@ -273,6 +274,7 @@ export default function Checkout() {
               <input
                 id="co-phone"
                 inputMode="tel"
+                autoComplete="tel"
                 value={customer.phone}
                 onChange={(e) => setCustomer({ ...customer, phone: e.target.value })}
                 placeholder="Ví dụ: 0901 234 567"
@@ -287,6 +289,7 @@ export default function Checkout() {
               <textarea
                 id="co-address"
                 rows={3}
+                autoComplete="street-address"
                 value={customer.address}
                 onChange={(e) => setCustomer({ ...customer, address: e.target.value })}
                 placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố"

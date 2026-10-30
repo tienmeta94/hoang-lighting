@@ -60,7 +60,10 @@ export default function Header() {
           >
             <ShoppingCart className="h-4 w-4" />
             <span className="hidden sm:inline">Giỏ hàng</span>
-            <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-400 px-1 text-[11px] font-bold text-stone-900">
+            <span
+              key={count}
+              className="animate-cart-pop absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-400 px-1 text-[11px] font-bold text-stone-900"
+            >
               {count}
             </span>
           </Link>

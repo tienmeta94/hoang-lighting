@@ -122,11 +122,14 @@ export default function Home() {
               </div>
             </dl>
           </div>
-          <div className="relative hidden lg:block">
+          <div className="relative">
             <div className="absolute -inset-8 rounded-full bg-amber-400/10 blur-3xl" />
             <div className="relative grid grid-cols-2 gap-4">
-              {featuredProducts.slice(0, 4).map((p) => (
-                <div key={p.id} className="rounded-2xl bg-white/5 p-2 ring-1 ring-white/10">
+              {featuredProducts.slice(0, 4).map((p, i) => (
+                <div
+                  key={p.id}
+                  className={`rounded-2xl bg-white/5 p-2 ring-1 ring-white/10 ${i >= 2 ? 'hidden lg:block' : ''}`}
+                >
                   <ProductCard product={p} />
                 </div>
               ))}

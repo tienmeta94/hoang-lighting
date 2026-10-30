@@ -9,6 +9,8 @@ import Checkout from './pages/Checkout'
 import { About, Contact, Policies } from './pages/StaticPages'
 import Placeholder from './pages/Placeholder'
 import ZaloFloat from './components/ZaloFloat'
+import ScrollToTop from './components/ScrollToTop'
+import BackToTop from './components/BackToTop'
 import { CartProvider } from './store/cart'
 
 // HashRouter để chạy tốt trên GitHub Pages (không cần cấu hình server cho route con).
@@ -16,6 +18,7 @@ export default function App() {
   return (
     <CartProvider>
     <HashRouter>
+      <ScrollToTop />
       <div className="flex min-h-screen flex-col">
         <Header />
         <div className="flex-1">
@@ -33,6 +36,7 @@ export default function App() {
         </div>
         <Footer />
       </div>
+      <BackToTop />
       <ZaloFloat />
     </HashRouter>
     </CartProvider>

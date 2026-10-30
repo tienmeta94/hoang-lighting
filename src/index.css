@@ -12,3 +12,43 @@ body {
   background-color: #faf7f2;
   color: #1c1917;
 }
+
+/* Tailwind v4 đặt cursor mặc định cho button — trả lại con trỏ tay cho dễ nhận biết bấm được */
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+/* Vòng focus rõ ràng khi điều hướng bằng bàn phím */
+:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+}
+
+::selection {
+  background-color: #fde68a;
+}
+
+/* Badge giỏ hàng "nảy" mỗi lần số lượng thay đổi */
+@keyframes cart-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.45);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animate-cart-pop {
+  animation: cart-pop 0.35s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-cart-pop {
+    animation: none;
+  }
+}

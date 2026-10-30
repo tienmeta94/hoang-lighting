@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { RotateCcw, Search, SearchX } from 'lucide-react'
 import { categories, products, type CategorySlug } from '../data/products'
@@ -76,6 +76,11 @@ export default function ProductList() {
   usePageTitle(
     activeCategoryName ? `${activeCategoryName} | Hoang Lighting` : 'Tất cả sản phẩm | Hoang Lighting',
   )
+
+  // Đổi danh mục (kể cả bấm link danh mục ở footer khi đang ở trang này) thì về đầu danh sách
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
+  }, [category])
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-8">
