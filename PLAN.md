@@ -54,7 +54,8 @@ Thông số riêng theo loại (hiển thị ở trang chi tiết):
 | M2 — Mua sắm ✅ | Trang danh sách + lọc/tìm/sắp xếp, trang chi tiết, sản phẩm liên quan | Khách duyệt và xem được toàn bộ hàng |
 | M3 — Bán hàng ✅ | Giỏ hàng (localStorage), form đặt hàng, gửi đơn qua Zalo + email | Đặt hàng được thật |
 | M4 — Hoàn thiện ✅ (dữ liệu mẫu) | Nhập dữ liệu (đang là mẫu: thông tin shop, phí ship, 16 sản phẩm), responsive, SEO cơ bản (title/meta/Open Graph/sitemap), nút chat Zalo nổi, trang Giới thiệu/Liên hệ/Chính sách | Sẵn sàng chia sẻ link bán hàng khi đã thay dữ liệu thật |
-| M5 — Nâng cấp (sau) | Thanh toán VNPay/MoMo, trang quản trị/CMS, quản lý đơn hàng, voucher, đo lường (GA) | Chỉ làm khi đã có đơn thật và thấy cần |
+| Backend + Quản trị ✅ | Backend Supabase (Postgres + Auth + Storage) nối với web; trang quản trị /admin: đăng nhập, CRUD sản phẩm, tải ảnh, ẩn/hiện + nổi bật, nạp dữ liệu mẫu; bản nâng cấp giao diện admin (30/10): thẻ thống kê, tìm kiếm không dấu, lọc danh mục/trạng thái, sắp xếp, cột giá cũ + % giảm, nút xem nhanh trên web | Chủ shop tự quản lý hàng đăng bán, web ngoài đọc dữ liệu thật từ database |
+| M5 — Nâng cấp (sau) | Thanh toán VNPay/MoMo, quản lý đơn hàng, voucher, đo lường (GA) | Chỉ làm khi đã có đơn thật và thấy cần |
 
 Mỗi mốc xong sẽ push lên `main`, web tự deploy; bạn xem link live và góp ý trước khi qua mốc tiếp theo.
 
