@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom'
 import {
   ArrowRight,
+  Banknote,
   Headset,
   Lamp,
   Lightbulb,
   RefreshCcw,
   ShieldCheck,
-  Sparkle,
   Sparkles,
   Star,
   Sun,
   Truck,
+  Undo2,
   type LucideIcon,
 } from 'lucide-react'
 import { categories, type CategorySlug } from '../data/products'
@@ -58,12 +59,12 @@ const testimonials = [
 ]
 
 const benefitItems = [
-  'Miễn phí giao hàng cho đơn từ 500.000đ',
-  'Bảo hành 6–24 tháng',
-  'Lỗi 1 đổi 1 trong 30 ngày',
-  'Đổi trả dễ dàng trong 7 ngày',
-  'Thanh toán khi nhận hàng (COD)',
-  'Tư vấn chọn đèn qua Zalo mỗi ngày',
+  { icon: Truck, title: 'Giao hàng miễn phí', sub: 'cho đơn từ 500.000đ' },
+  { icon: ShieldCheck, title: 'Bảo hành 6–24 tháng', sub: 'theo từng sản phẩm' },
+  { icon: RefreshCcw, title: '1 đổi 1 trong 30 ngày', sub: 'khi sản phẩm bị lỗi' },
+  { icon: Undo2, title: 'Đổi trả trong 7 ngày', sub: 'nếu bạn không vừa ý' },
+  { icon: Banknote, title: 'Thanh toán COD', sub: 'nhận hàng rồi trả tiền' },
+  { icon: Headset, title: 'Tư vấn qua Zalo', sub: 'hỗ trợ bạn mỗi ngày' },
 ]
 
 function SectionTitle({ title, sub, linkTo }: { title: string; sub?: string; linkTo?: string }) {
@@ -177,16 +178,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Thanh cam kết (tĩnh — bản chạy chữ trước đây bị phản ánh là rối mắt) */}
-      <div className="bg-amber-400 py-3" aria-label="Cam kết của cửa hàng">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4">
+      {/* Thẻ cam kết nổi đè lên hero (tĩnh — bản chạy chữ trước đây bị phản ánh là rối mắt) */}
+      <div className="relative z-10 mx-auto -mt-9 max-w-6xl px-4" aria-label="Cam kết của cửa hàng">
+        <div className="animate-fade-up grid grid-cols-2 gap-x-2 gap-y-5 rounded-3xl bg-white px-5 py-6 shadow-xl shadow-stone-900/10 ring-1 ring-stone-200/70 md:grid-cols-3 xl:grid-cols-6">
           {benefitItems.map((item) => (
-            <span
-              key={item}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-stone-900"
-            >
-              <Sparkle className="h-3.5 w-3.5 shrink-0 fill-stone-900" /> {item}
-            </span>
+            <div key={item.title} className="group flex flex-col items-center text-center">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 to-amber-500 text-stone-900 shadow-sm transition duration-300 group-hover:scale-110">
+                <item.icon className="h-5 w-5" />
+              </span>
+              <span className="mt-2.5 text-[13px] font-bold leading-snug text-stone-800">{item.title}</span>
+              <span className="mt-0.5 text-xs leading-snug text-stone-400">{item.sub}</span>
+            </div>
           ))}
         </div>
       </div>
