@@ -19,6 +19,7 @@ export type Badge = 'hot' | 'new' | 'sale'
 export interface Product {
   id: string
   slug: string
+  image: string
   name: string
   category: CategorySlug
   price: number
@@ -47,6 +48,7 @@ export const products: Product[] = [
   {
     id: 'p01',
     slug: 'den-tru-cong-nang-luong-mat-troi-solargate-30',
+    image: 'https://classycaps.com/cdn/shop/files/SLO82W-3x3.jpg?v=1757451768&width=1200',
     name: 'Đèn trụ cổng năng lượng mặt trời SolarGate 30',
     category: 'solar',
     price: 389000,
@@ -69,6 +71,7 @@ export const products: Product[] = [
   {
     id: 'p02',
     slug: 'den-pha-led-nang-luong-mat-troi-200w',
+    image: 'https://ls6iibytsc.eu.scalesta-cdn.com/hFQSxmuBAQ0LAJX3vNYDzWPjG5M=/fit-in/570x570/filters:format(webp):fill(fff):quality(90)/www.gstoreq8.com/images/detailed/381/3_r02v-ci.webp',
     name: 'Đèn pha LED năng lượng mặt trời 200W SolarFlood',
     category: 'solar',
     price: 549000,
@@ -91,6 +94,7 @@ export const products: Product[] = [
   {
     id: 'p03',
     slug: 'den-cam-san-vuon-solargarden-bo-4',
+    image: 'https://gigalumi.com/cdn/shop/files/XF-XIN-Warm-Scene-1200x1200-01.jpg?v=1686619208',
     name: 'Đèn cắm sân vườn SolarGarden (bộ 4 chiếc)',
     category: 'solar',
     price: 249000,
@@ -111,6 +115,7 @@ export const products: Product[] = [
   {
     id: 'p04',
     slug: 'bong-led-bulb-12w-e27-combo-3',
+    image: 'https://centrumkablowe.pl/userdata/public/news/images/53.jpg',
     name: 'Bóng LED bulb 12W đui E27 (combo 3 bóng)',
     category: 'led',
     price: 99000,
@@ -130,6 +135,7 @@ export const products: Product[] = [
   {
     id: 'p05',
     slug: 'den-led-day-rgb-5m-dieu-khien-app',
+    image: 'https://m.media-amazon.com/images/I/71MvfGw3JzL._SL1500_.jpg',
     name: 'Đèn LED dây RGB 5m điều khiển qua app',
     category: 'led',
     price: 189000,
@@ -152,6 +158,7 @@ export const products: Product[] = [
   {
     id: 'p06',
     slug: 'den-downlight-am-tran-led-9w',
+    image: 'https://i8.by/upload/dev2fun.imagecompress/webp/iblock/333/lhaowsbyteefp9zwrc7qd21si6f6pei1.webp',
     name: 'Đèn downlight âm trần LED 9W',
     category: 'led',
     price: 79000,
@@ -172,6 +179,7 @@ export const products: Product[] = [
   {
     id: 'p07',
     slug: 'day-den-nhay-led-10m-100-bong',
+    image: 'https://src.garden.eco/img/image5_10x20-patio-ideas_chic-outdoor-lighting.webp',
     name: 'Dây đèn nháy LED 10m 100 bóng chống nước',
     category: 'day-nhay',
     price: 129000,
@@ -193,6 +201,7 @@ export const products: Product[] = [
   {
     id: 'p08',
     slug: 'den-nhay-sao-bang-8-ong-50cm',
+    image: 'https://m.media-amazon.com/images/I/91RGVPPuHEL.jpg_BO30,255,255,255_UF900,850_SR1910,1000,0,C_QL100_.jpg',
     name: 'Đèn nháy sao băng 8 ống 50cm',
     category: 'day-nhay',
     price: 159000,
@@ -212,6 +221,7 @@ export const products: Product[] = [
   {
     id: 'p09',
     slug: 'day-den-nhay-bi-tron-6m-usb',
+    image: 'https://modernandmellow.com/img/image6_cable-lighting-ideas_a-touch-of-elegance-in-bedrooms.webp',
     name: 'Dây đèn nháy bi tròn 6m dùng USB',
     category: 'day-nhay',
     price: 89000,
@@ -232,6 +242,7 @@ export const products: Product[] = [
   {
     id: 'p10',
     slug: 'den-tha-tran-edison-vintage',
+    image: 'https://ourbrightdays.com/img/image5_coffee-bar-lighting-ideas_section-vintage-charm-with-edison-bulbs.jpg',
     name: 'Đèn thả trần Edison phong cách vintage',
     category: 'trang-tri',
     price: 329000,
@@ -251,6 +262,7 @@ export const products: Product[] = [
   {
     id: 'p11',
     slug: 'den-ban-gom-luna',
+    image: 'https://media.valuelights.co.uk/27154_DLIFE',
     name: 'Đèn bàn gốm Luna ánh sáng ấm',
     category: 'trang-tri',
     price: 459000,
@@ -271,6 +283,7 @@ export const products: Product[] = [
   {
     id: 'p12',
     slug: 'den-long-tre-trang-tri',
+    image: 'https://gardenista.com/wp-content/uploads/2023/03/bamboo-pendant-lights-oriental-bazar-etsy.jpg',
     name: 'Đèn lồng tre trang trí thủ công',
     category: 'trang-tri',
     price: 219000,
@@ -290,6 +303,7 @@ export const products: Product[] = [
   {
     id: 'p13',
     slug: 'den-tuong-nang-luong-mat-troi-cam-ung',
+    image: 'https://salt.tikicdn.com/ts/product/85/81/e0/f361599a090d5252140e306fbb73af44.jpg',
     name: 'Đèn tường năng lượng mặt trời cảm ứng chuyển động',
     category: 'solar',
     price: 179000,
@@ -310,6 +324,7 @@ export const products: Product[] = [
   {
     id: 'p14',
     slug: 'den-panel-led-tran-24w',
+    image: 'https://cdn.ggmmoebel.com/media/catalog/product/e/m/image/800/800/empire.hlp6060.4k.o.jpg',
     name: 'Đèn panel LED âm trần 24W siêu mỏng',
     category: 'led',
     price: 149000,
@@ -329,6 +344,7 @@ export const products: Product[] = [
   {
     id: 'p15',
     slug: 'den-nhay-rem-cua-so-3x3m',
+    image: 'https://i.ebayimg.com/00/s/MTAxMFgxMDEw/z/abMAAOSw7SdlXw~e/$_3.PNG',
     name: 'Đèn nháy rèm cửa sổ 3×3m 300 bóng',
     category: 'day-nhay',
     price: 199000,
@@ -351,6 +367,7 @@ export const products: Product[] = [
   {
     id: 'p16',
     slug: 'den-tuong-trang-tri-bac-au',
+    image: 'https://i.etsystatic.com/65628920/r/il/48ab53/8121135881/il_1080xN.8121135881_fhoq.jpg',
     name: 'Đèn tường trang trí Bắc Âu hai đầu hắt',
     category: 'trang-tri',
     price: 289000,

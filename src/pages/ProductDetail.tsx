@@ -77,7 +77,7 @@ export default function ProductDetail() {
       <div className="mt-6 grid gap-8 lg:grid-cols-2">
         {/* Ảnh */}
         <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-stone-200/70">
-          <ProductImage category={product.category} name={product.name} large />
+          <ProductImage category={product.category} name={product.name} image={product.image} large />
         </div>
 
         {/* Thông tin mua */}

@@ -32,7 +32,7 @@ export default function ProductCard({ product }: { product: Product }) {
       className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-stone-200/70 transition duration-300 hover:-translate-y-1 hover:shadow-lg"
     >
       <div className="relative overflow-hidden transition-transform duration-300 group-hover:scale-[1.03]">
-        <ProductImage category={product.category} name={product.name} />
+        <ProductImage category={product.category} name={product.name} image={product.image} />
         <div className="absolute left-2 top-2 flex flex-col items-start gap-1">
           {product.badge && (
             <span className={`rounded px-2 py-0.5 text-[11px] font-semibold ${badgeStyle[product.badge]}`}>

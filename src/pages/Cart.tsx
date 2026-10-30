@@ -52,7 +52,7 @@ export default function Cart() {
                 to={`/san-pham/${product.slug}`}
                 className="w-24 shrink-0 overflow-hidden rounded-xl sm:w-28"
               >
-                <ProductImage category={product.category} name={product.name} />
+                <ProductImage category={product.category} name={product.name} image={product.image} />
               </Link>
               <div className="flex min-w-0 flex-1 flex-col">
                 <div className="flex items-start justify-between gap-2">

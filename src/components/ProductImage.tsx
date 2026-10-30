@@ -1,8 +1,9 @@
+import { useState } from 'react'
 import { Lightbulb, Sparkles, Sun, Lamp, type LucideIcon } from 'lucide-react'
 import type { CategorySlug } from '../data/products'
 
-// Ảnh giữ chỗ theo danh mục trong giai đoạn dữ liệu mẫu.
-// Khi có ảnh thật (M4), thay component này bằng <img> trỏ tới file ảnh sản phẩm.
+// Hiển thị ảnh sản phẩm. Nếu ảnh lỗi/không tải được thì tự quay về nền gradient + icon
+// theo danh mục để giao diện không bao giờ vỡ.
 const visuals: Record<CategorySlug, { icon: LucideIcon; classes: string }> = {
   solar: { icon: Sun, classes: 'from-amber-300 via-orange-200 to-yellow-50 text-orange-500' },
   led: { icon: Lightbulb, classes: 'from-yellow-200 via-amber-100 to-white text-amber-500' },
@@ -13,18 +14,38 @@ const visuals: Record<CategorySlug, { icon: LucideIcon; classes: string }> = {
 export default function ProductImage({
   category,
   name,
+  image,
   large = false,
 }: {
   category: CategorySlug
   name: string
+  image?: string
   large?: boolean
 }) {
+  const [failed, setFailed] = useState(false)
   const { icon: Icon, classes } = visuals[category]
+  const aspect = large ? 'aspect-[4/3]' : 'aspect-square'
+
+  if (image && !failed) {
+    return (
+      <div className={`relative w-full overflow-hidden bg-stone-100 ${aspect}`}>
+        <img
+          src={image}
+          alt={name}
+          loading="lazy"
+          onError={() => setFailed(true)}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <span className="absolute bottom-2 right-2 rounded bg-black/45 px-1.5 py-0.5 text-[10px] font-medium text-white">
+          Ảnh minh họa
+        </span>
+      </div>
+    )
+  }
+
   return (
     <div
-      className={`relative flex w-full items-center justify-center bg-gradient-to-br ${classes} ${
-        large ? 'aspect-[4/3]' : 'aspect-square'
-      }`}
+      className={`relative flex w-full items-center justify-center bg-gradient-to-br ${classes} ${aspect}`}
       role="img"
       aria-label={name}
     >
