@@ -6,7 +6,9 @@ import ProductList from './pages/ProductList'
 import ProductDetail from './pages/ProductDetail'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
+import { About, Contact, Policies } from './pages/StaticPages'
 import Placeholder from './pages/Placeholder'
+import ZaloFloat from './components/ZaloFloat'
 import { CartProvider } from './store/cart'
 
 // HashRouter để chạy tốt trên GitHub Pages (không cần cấu hình server cho route con).
@@ -23,20 +25,15 @@ export default function App() {
             <Route path="/san-pham/:slug" element={<ProductDetail />} />
             <Route path="/gio-hang" element={<Cart />} />
             <Route path="/dat-hang" element={<Checkout />} />
-            <Route
-              path="/gioi-thieu"
-              element={<Placeholder title="Giới thiệu Hoang Lighting" milestone="mốc M4" />}
-            />
-            <Route path="/lien-he" element={<Placeholder title="Liên hệ" milestone="mốc M4" />} />
-            <Route
-              path="/chinh-sach"
-              element={<Placeholder title="Chính sách bán hàng" milestone="mốc M4" />}
-            />
+            <Route path="/gioi-thieu" element={<About />} />
+            <Route path="/lien-he" element={<Contact />} />
+            <Route path="/chinh-sach" element={<Policies />} />
             <Route path="*" element={<Placeholder title="Không tìm thấy trang" milestone="" />} />
           </Routes>
         </div>
         <Footer />
       </div>
+      <ZaloFloat />
     </HashRouter>
     </CartProvider>
   )

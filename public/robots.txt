@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tienmeta94.github.io/hoang-lighting/sitemap.xml

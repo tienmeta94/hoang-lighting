@@ -1,18 +1,31 @@
-// Thông tin liên hệ của shop — ĐIỀN Ở ĐÂY khi có dữ liệu thật (mốc M4).
-// Để trống thì web hiển thị "Đang cập nhật" và nút gửi đơn qua kênh đó bị khoá,
-// khách vẫn sao chép được nội dung đơn hàng để gửi thủ công.
+// Thông tin liên hệ của shop.
+// ⚠️ ĐANG LÀ DỮ LIỆU MẪU (mock theo yêu cầu triển khai M4) — thay bằng thông tin
+// thật của shop tại đây trước khi chia sẻ link cho khách hàng thật.
 export const shop = {
   name: 'Hoang Lighting',
-  // Số điện thoại nhận cuộc gọi, ví dụ '0901234567'
-  phone: '',
-  // Số Zalo nhận đơn (thường trùng số điện thoại), ví dụ '0901234567'
-  zalo: '',
-  // Email nhận bản sao đơn hàng
-  email: '',
-  // Endpoint Formspree để gửi đơn về email, ví dụ 'https://formspree.io/f/abcdwxyz'
+  // Số điện thoại mẫu
+  phone: '0901234567',
+  // Số Zalo mẫu (trùng số điện thoại mẫu)
+  zalo: '0901234567',
+  // Email mẫu
+  email: 'hotro@hoanglighting.vn',
+  // Endpoint Formspree để gửi đơn về email — không mock được, tạo form thật tại
+  // formspree.io rồi dán endpoint vào đây (ví dụ 'https://formspree.io/f/abcdwxyz').
   formspreeEndpoint: '',
-  // Địa chỉ cửa hàng
-  address: '',
+  // Địa chỉ mẫu
+  address: '123 Đường Ánh Sáng, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh',
+  // Giờ mở cửa
+  hours: '8:00 – 21:00 hằng ngày',
+}
+
+// Chính sách phí giao hàng (MẪU): miễn phí cho đơn từ 500.000đ,
+// các đơn còn lại đồng giá 30.000đ.
+export const FREE_SHIP_THRESHOLD = 500000
+export const STANDARD_SHIP_FEE = 30000
+
+export const shippingFee = (subtotal: number): number => {
+  if (subtotal <= 0) return 0
+  return subtotal >= FREE_SHIP_THRESHOLD ? 0 : STANDARD_SHIP_FEE
 }
 
 export const hasZalo = shop.zalo.trim().length > 0
@@ -20,3 +33,7 @@ export const hasEmailOrder = shop.formspreeEndpoint.trim().length > 0
 
 export const zaloLink = (message: string): string =>
   `https://zalo.me/${shop.zalo.trim()}?text=${encodeURIComponent(message)}`
+
+export const zaloChatLink = zaloLink(
+  `Xin chào ${shop.name}, tôi muốn được tư vấn chọn đèn.`,
+)

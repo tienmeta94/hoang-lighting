@@ -15,6 +15,7 @@ import {
 import { categoryName, products } from '../data/products'
 import { discountPercent, formatVND } from '../lib/format'
 import { useCart } from '../store/cart'
+import { usePageTitle } from '../lib/usePageTitle'
 import ProductCard from '../components/ProductCard'
 import ProductImage from '../components/ProductImage'
 
@@ -23,6 +24,7 @@ export default function ProductDetail() {
   const navigate = useNavigate()
   const { add } = useCart()
   const product = products.find((p) => p.slug === slug)
+  usePageTitle(product ? `${product.name} | Hoang Lighting` : 'Không tìm thấy sản phẩm | Hoang Lighting')
   const [qty, setQty] = useState(1)
   const [added, setAdded] = useState(false)
 

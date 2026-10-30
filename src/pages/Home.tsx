@@ -13,6 +13,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import { bestSellers, categories, featuredProducts, type CategorySlug } from '../data/products'
+import { usePageTitle } from '../lib/usePageTitle'
 import ProductCard from '../components/ProductCard'
 
 const categoryIcons: Record<CategorySlug, LucideIcon> = {
@@ -73,6 +74,7 @@ function SectionTitle({ title, sub, linkTo }: { title: string; sub?: string; lin
 }
 
 export default function Home() {
+  usePageTitle('Hoang Lighting — Đèn mặt trời, LED, đèn nháy & trang trí')
   return (
     <main>
       {/* Hero */}

@@ -2,12 +2,17 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react'
 import { formatVND } from '../lib/format'
+import { FREE_SHIP_THRESHOLD, STANDARD_SHIP_FEE, shippingFee } from '../config'
 import { useCart } from '../store/cart'
+import { usePageTitle } from '../lib/usePageTitle'
 import ProductImage from '../components/ProductImage'
 
 export default function Cart() {
   const { lines, count, subtotal, setQty, remove, clear } = useCart()
   const [confirmingClear, setConfirmingClear] = useState(false)
+  const fee = shippingFee(subtotal)
+  const toFreeShip = FREE_SHIP_THRESHOLD - subtotal
+  usePageTitle('Giỏ hàng | Hoang Lighting')
 
   if (lines.length === 0) {
     return (
@@ -133,16 +138,23 @@ export default function Cart() {
             </div>
             <div className="flex justify-between">
               <dt className="text-stone-500">Phí giao hàng</dt>
-              <dd className="text-right text-stone-600">Shop báo khi xác nhận đơn</dd>
+              <dd className={fee === 0 ? 'font-semibold text-emerald-600' : 'font-semibold'}>
+                {fee === 0 ? 'Miễn phí' : formatVND(fee)}
+              </dd>
             </div>
             <div className="flex justify-between border-t border-dashed border-stone-200 pt-3 text-base">
               <dt className="font-bold text-stone-900">Tổng cộng</dt>
-              <dd className="font-extrabold text-red-600">{formatVND(subtotal)}</dd>
+              <dd className="font-extrabold text-red-600">{formatVND(subtotal + fee)}</dd>
             </div>
           </dl>
           <p className="mt-2 text-xs leading-relaxed text-stone-400">
-            Thanh toán khi nhận hàng (COD). Shop sẽ gọi điện xác nhận đơn và báo phí giao hàng trước
-            khi gửi.
+            Thanh toán khi nhận hàng (COD). Đơn từ {formatVND(FREE_SHIP_THRESHOLD)} được miễn phí giao
+            hàng; đơn nhỏ hơn phí ship {formatVND(STANDARD_SHIP_FEE)} (chính sách mẫu).
+            {fee > 0 && (
+              <span className="mt-1 block font-medium text-amber-600">
+                Mua thêm {formatVND(toFreeShip)} nữa để được miễn phí giao hàng.
+              </span>
+            )}
           </p>
           <Link
             to="/dat-hang"

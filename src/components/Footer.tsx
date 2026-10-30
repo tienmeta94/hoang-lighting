@@ -76,7 +76,8 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-stone-800 py-4 text-center text-xs text-stone-500">
-        © 2026 Hoang Lighting. Giá và thông tin trên web đang là dữ liệu mẫu trong giai đoạn xây dựng.
+        © 2026 Hoang Lighting. Giá, sản phẩm và thông tin liên hệ trên web đang là dữ liệu mẫu trong
+        giai đoạn xây dựng — sẽ thay bằng dữ liệu thật trước khi bán chính thức.
       </div>
     </footer>
   )

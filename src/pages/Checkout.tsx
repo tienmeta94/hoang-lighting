@@ -9,8 +9,9 @@ import {
   PartyPopper,
 } from 'lucide-react'
 import { formatVND } from '../lib/format'
-import { hasEmailOrder, hasZalo, shop, zaloLink } from '../config'
+import { hasEmailOrder, hasZalo, shippingFee, shop, zaloLink } from '../config'
 import { useCart } from '../store/cart'
+import { usePageTitle } from '../lib/usePageTitle'
 
 interface Customer {
   name: string
@@ -21,14 +22,21 @@ interface Customer {
 
 type Stage = 'form' | 'ready' | 'done'
 
-const buildOrderMessage = (code: string, customer: Customer, linesText: string, total: string) =>
+const buildOrderMessage = (
+  code: string,
+  customer: Customer,
+  linesText: string,
+  amounts: { subtotal: number; fee: number },
+) =>
   [
     `ĐƠN HÀNG MỚI — ${shop.name}`,
     `Mã đơn: ${code}`,
     '——————————',
     linesText,
     '——————————',
-    `Tổng cộng: ${total} (chưa gồm phí ship)`,
+    `Tạm tính: ${formatVND(amounts.subtotal)}`,
+    `Phí giao hàng: ${amounts.fee === 0 ? 'Miễn phí' : formatVND(amounts.fee)}`,
+    `Tổng cộng: ${formatVND(amounts.subtotal + amounts.fee)}`,
     `Họ tên: ${customer.name}`,
     `Số điện thoại: ${customer.phone}`,
     `Địa chỉ: ${customer.address}`,
@@ -39,6 +47,7 @@ const buildOrderMessage = (code: string, customer: Customer, linesText: string, 
     .join('\n')
 
 export default function Checkout() {
+  usePageTitle('Đặt hàng | Hoang Lighting')
   const { lines, subtotal, count, clear } = useCart()
   const [stage, setStage] = useState<Stage>('form')
   const [customer, setCustomer] = useState<Customer>({ name: '', phone: '', address: '', note: '' })
@@ -57,9 +66,10 @@ export default function Checkout() {
         .join('\n'),
     [lines],
   )
+  const fee = shippingFee(subtotal)
   const orderMessage = useMemo(
-    () => buildOrderMessage(orderCode, customer, linesText, formatVND(subtotal)),
-    [orderCode, customer, linesText, subtotal],
+    () => buildOrderMessage(orderCode, customer, linesText, { subtotal, fee }),
+    [orderCode, customer, linesText, subtotal, fee],
   )
 
   if (lines.length === 0 && stage === 'form') {
@@ -145,7 +155,8 @@ export default function Checkout() {
           dia_chi: customer.address,
           ghi_chu: customer.note,
           chi_tiet_don: linesText,
-          tong_cong: formatVND(subtotal),
+          phi_giao_hang: fee === 0 ? 'Miễn phí' : formatVND(fee),
+          tong_cong: formatVND(subtotal + fee),
         }),
       })
       setEmailState(res.ok ? 'sent' : 'failed')
@@ -321,11 +332,22 @@ export default function Checkout() {
               </li>
             ))}
           </ul>
-          <div className="mt-4 flex justify-between border-t border-dashed border-stone-200 pt-3">
-            <span className="font-bold text-stone-900">Tổng cộng</span>
-            <span className="font-extrabold text-red-600">{formatVND(subtotal)}</span>
+          <div className="mt-4 space-y-2 border-t border-dashed border-stone-200 pt-3 text-sm">
+            <div className="flex justify-between">
+              <span className="text-stone-500">Tạm tính</span>
+              <span className="font-semibold">{formatVND(subtotal)}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-stone-500">Phí giao hàng</span>
+              <span className={fee === 0 ? 'font-semibold text-emerald-600' : 'font-semibold'}>
+                {fee === 0 ? 'Miễn phí' : formatVND(fee)}
+              </span>
+            </div>
+            <div className="flex justify-between text-base">
+              <span className="font-bold text-stone-900">Tổng cộng</span>
+              <span className="font-extrabold text-red-600">{formatVND(subtotal + fee)}</span>
+            </div>
           </div>
-          <p className="mt-1 text-right text-xs text-stone-400">Chưa gồm phí giao hàng</p>
         </aside>
       </div>
     </main>

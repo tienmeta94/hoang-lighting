@@ -4,6 +4,7 @@ import { RotateCcw, Search, SearchX } from 'lucide-react'
 import { categories, products, type CategorySlug } from '../data/products'
 import { formatVND } from '../lib/format'
 import { normalizeVi } from '../lib/text'
+import { usePageTitle } from '../lib/usePageTitle'
 import ProductCard from '../components/ProductCard'
 
 interface PriceRange {
@@ -72,6 +73,9 @@ export default function ProductList() {
 
   const hasFilters = category !== null || query !== '' || priceIds.length > 0
   const activeCategoryName = category ? categories.find((c) => c.slug === category)?.name : null
+  usePageTitle(
+    activeCategoryName ? `${activeCategoryName} | Hoang Lighting` : 'Tất cả sản phẩm | Hoang Lighting',
+  )
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-8">
