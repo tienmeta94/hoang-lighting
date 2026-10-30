@@ -7,7 +7,8 @@ import {
   useState,
   type ReactNode,
 } from 'react'
-import { products, type Product } from '../data/products'
+import { type Product } from '../data/products'
+import { useProducts } from './products'
 
 export interface CartLine {
   product: Product
@@ -29,6 +30,8 @@ const STORAGE_KEY = 'hoang-lighting-cart-v1'
 
 type StoredCart = Record<string, number>
 
+// Giỏ lưu theo id sản phẩm; id có thể đến từ backend nên chỉ kiểm tra định dạng,
+// việc khớp sản phẩm thật diễn ra khi tính lines theo danh mục hiện tại.
 const loadCart = (): StoredCart => {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
@@ -36,7 +39,7 @@ const loadCart = (): StoredCart => {
     const parsed = JSON.parse(raw) as Record<string, unknown>
     const valid: StoredCart = {}
     for (const [id, qty] of Object.entries(parsed)) {
-      if (products.some((p) => p.id === id) && typeof qty === 'number' && qty > 0) {
+      if (typeof id === 'string' && id && typeof qty === 'number' && qty > 0) {
         valid[id] = Math.min(99, Math.floor(qty))
       }
     }
@@ -47,6 +50,7 @@ const loadCart = (): StoredCart => {
 }
 
 export function CartProvider({ children }: { children: ReactNode }) {
+  const { products } = useProducts()
   const [items, setItems] = useState<StoredCart>(loadCart)
 
   useEffect(() => {
@@ -92,10 +96,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
         return product ? { product, qty } : null
       })
       .filter((l): l is CartLine => l !== null)
-    const count = lines.reduce((sum, l) => sum + l.qty, 0)
+    // Badge đếm theo số món đã thêm (kể cả khi danh mục đang tải), tổng tiền theo lines đã khớp.
+    const count = Object.values(items).reduce((sum, q) => sum + q, 0)
     const subtotal = lines.reduce((sum, l) => sum + l.qty * l.product.price, 0)
     return { lines, count, subtotal, add, setQty, remove, clear }
-  }, [items, add, setQty, remove, clear])
+  }, [items, products, add, setQty, remove, clear])
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

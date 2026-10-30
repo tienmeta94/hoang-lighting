@@ -1,3 +1,13 @@
+// Kết nối Supabase (backend quản trị sản phẩm).
+// Điền Project URL và anon key của project Supabase vào đây (anon key là key
+// CÔNG KHAI theo thiết kế của Supabase — nó vốn nằm trong code web cho mọi
+// người thấy; quyền sửa dữ liệu được khoá bằng đăng nhập admin + RLS).
+// Cũng có thể đặt qua biến môi trường VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY.
+export const supabaseConfig = {
+  url: '',
+  anonKey: '',
+}
+
 // Thông tin liên hệ của shop.
 // ⚠️ ĐANG LÀ DỮ LIỆU MẪU (mock theo yêu cầu triển khai M4) — thay bằng thông tin
 // thật của shop tại đây trước khi chia sẻ link cho khách hàng thật.

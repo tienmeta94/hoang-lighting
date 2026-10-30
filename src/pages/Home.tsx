@@ -12,7 +12,8 @@ import {
   Truck,
   type LucideIcon,
 } from 'lucide-react'
-import { bestSellers, categories, featuredProducts, type CategorySlug } from '../data/products'
+import { categories, type CategorySlug } from '../data/products'
+import { useProducts } from '../store/products'
 import { usePageTitle } from '../lib/usePageTitle'
 import ProductCard from '../components/ProductCard'
 
@@ -75,6 +76,9 @@ function SectionTitle({ title, sub, linkTo }: { title: string; sub?: string; lin
 
 export default function Home() {
   usePageTitle('Hoang Lighting — Đèn mặt trời, LED, đèn nháy & trang trí')
+  const { products } = useProducts()
+  const featuredProducts = products.filter((p) => p.featured)
+  const bestSellers = [...products].sort((a, b) => b.sold - a.sold).slice(0, 4)
   return (
     <main>
       {/* Hero */}

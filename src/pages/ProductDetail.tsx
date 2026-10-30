@@ -12,7 +12,8 @@ import {
   Truck,
   Zap,
 } from 'lucide-react'
-import { categoryName, products } from '../data/products'
+import { categoryName } from '../data/products'
+import { useProducts } from '../store/products'
 import { discountPercent, formatVND } from '../lib/format'
 import { useCart } from '../store/cart'
 import { usePageTitle } from '../lib/usePageTitle'
@@ -23,6 +24,7 @@ export default function ProductDetail() {
   const { slug } = useParams()
   const navigate = useNavigate()
   const { add } = useCart()
+  const { products } = useProducts()
   const product = products.find((p) => p.slug === slug)
   usePageTitle(product ? `${product.name} | Hoang Lighting` : 'Không tìm thấy sản phẩm | Hoang Lighting')
   const [qty, setQty] = useState(1)

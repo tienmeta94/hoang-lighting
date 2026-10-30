@@ -1,7 +1,8 @@
 import { useEffect, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { RotateCcw, Search, SearchX } from 'lucide-react'
-import { categories, products, type CategorySlug } from '../data/products'
+import { categories, type CategorySlug } from '../data/products'
+import { useProducts } from '../store/products'
 import { formatVND } from '../lib/format'
 import { normalizeVi } from '../lib/text'
 import { usePageTitle } from '../lib/usePageTitle'
@@ -34,6 +35,7 @@ const isCategory = (v: string | null): v is CategorySlug =>
   v !== null && categories.some((c) => c.slug === v)
 
 export default function ProductList() {
+  const { products } = useProducts()
   const [params, setParams] = useSearchParams()
 
   const category = isCategory(params.get('danh-muc')) ? (params.get('danh-muc') as CategorySlug) : null
@@ -69,7 +71,7 @@ export default function ProductList() {
     }
     return [...list].sort(by[sort])
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [category, query, priceIds.join(','), sort])
+  }, [products, category, query, priceIds.join(','), sort])
 
   const hasFilters = category !== null || query !== '' || priceIds.length > 0
   const activeCategoryName = category ? categories.find((c) => c.slug === category)?.name : null
