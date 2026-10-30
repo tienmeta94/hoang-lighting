@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Clock, Lightbulb, MapPin, MessageCircle, Phone } from 'lucide-react'
 import { categories } from '../data/products'
+import { shop } from '../config'
 
 export default function Footer() {
   return (
@@ -57,15 +58,15 @@ export default function Footer() {
           <ul className="mt-3 space-y-2.5 text-sm">
             <li className="flex items-start gap-2">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" />
-              Địa chỉ: Đang cập nhật
+              Địa chỉ: {shop.address || 'Đang cập nhật'}
             </li>
             <li className="flex items-start gap-2">
               <Phone className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" />
-              Hotline: Đang cập nhật
+              Hotline: {shop.phone || 'Đang cập nhật'}
             </li>
             <li className="flex items-start gap-2">
               <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" />
-              Zalo: Đang cập nhật
+              Zalo: {shop.zalo || 'Đang cập nhật'}
             </li>
             <li className="flex items-start gap-2">
               <Clock className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" />

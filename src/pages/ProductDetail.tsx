@@ -14,12 +14,14 @@ import {
 } from 'lucide-react'
 import { categoryName, products } from '../data/products'
 import { discountPercent, formatVND } from '../lib/format'
+import { useCart } from '../store/cart'
 import ProductCard from '../components/ProductCard'
 import ProductImage from '../components/ProductImage'
 
 export default function ProductDetail() {
   const { slug } = useParams()
   const navigate = useNavigate()
+  const { add } = useCart()
   const product = products.find((p) => p.slug === slug)
   const [qty, setQty] = useState(1)
   const [added, setAdded] = useState(false)
@@ -134,7 +136,10 @@ export default function ProductDetail() {
               </button>
             </div>
             <button
-              onClick={() => setAdded(true)}
+              onClick={() => {
+                add(product.id, qty)
+                setAdded(true)
+              }}
               className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-semibold ring-1 transition ${
                 added
                   ? 'bg-emerald-50 text-emerald-700 ring-emerald-300'
@@ -142,10 +147,13 @@ export default function ProductDetail() {
               }`}
             >
               {added ? <Check className="h-4 w-4" /> : <ShoppingCart className="h-4 w-4" />}
-              {added ? 'Đã thêm vào giỏ (demo)' : 'Thêm vào giỏ'}
+              {added ? 'Đã thêm vào giỏ' : 'Thêm vào giỏ'}
             </button>
             <button
-              onClick={() => navigate('/dat-hang')}
+              onClick={() => {
+                add(product.id, qty)
+                navigate('/dat-hang')
+              }}
               className="inline-flex items-center gap-2 rounded-full bg-amber-400 px-6 py-2.5 font-semibold text-stone-900 transition hover:bg-amber-300"
             >
               <Zap className="h-4 w-4" /> Mua ngay
@@ -153,7 +161,10 @@ export default function ProductDetail() {
           </div>
           {added && (
             <p className="mt-2 text-xs text-stone-500">
-              Giỏ hàng đầy đủ (lưu giỏ + tính tổng) sẽ hoàn thiện ở mốc M3 — hiện tại đây là thao tác demo.
+              Đã lưu vào giỏ hàng trên máy của bạn.{' '}
+              <Link to="/gio-hang" className="font-semibold text-amber-600 hover:text-amber-700">
+                Xem giỏ hàng →
+              </Link>
             </p>
           )}
 

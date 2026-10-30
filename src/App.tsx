@@ -4,11 +4,15 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import ProductList from './pages/ProductList'
 import ProductDetail from './pages/ProductDetail'
+import Cart from './pages/Cart'
+import Checkout from './pages/Checkout'
 import Placeholder from './pages/Placeholder'
+import { CartProvider } from './store/cart'
 
 // HashRouter để chạy tốt trên GitHub Pages (không cần cấu hình server cho route con).
 export default function App() {
   return (
+    <CartProvider>
     <HashRouter>
       <div className="flex min-h-screen flex-col">
         <Header />
@@ -17,8 +21,8 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/san-pham" element={<ProductList />} />
             <Route path="/san-pham/:slug" element={<ProductDetail />} />
-            <Route path="/gio-hang" element={<Placeholder title="Giỏ hàng" milestone="mốc M3" />} />
-            <Route path="/dat-hang" element={<Placeholder title="Đặt hàng" milestone="mốc M3" />} />
+            <Route path="/gio-hang" element={<Cart />} />
+            <Route path="/dat-hang" element={<Checkout />} />
             <Route
               path="/gioi-thieu"
               element={<Placeholder title="Giới thiệu Hoang Lighting" milestone="mốc M4" />}
@@ -34,5 +38,6 @@ export default function App() {
         <Footer />
       </div>
     </HashRouter>
+    </CartProvider>
   )
 }

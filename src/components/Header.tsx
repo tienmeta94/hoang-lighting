@@ -1,5 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import { Lightbulb, Phone, ShoppingCart, Truck } from 'lucide-react'
+import { shop } from '../config'
+import { useCart } from '../store/cart'
 
 const navItems = [
   { to: '/', label: 'Trang chủ' },
@@ -9,6 +11,7 @@ const navItems = [
 ]
 
 export default function Header() {
+  const { count } = useCart()
   return (
     <header className="sticky top-0 z-40 shadow-sm">
       <div className="bg-stone-900 text-stone-200">
@@ -19,7 +22,7 @@ export default function Header() {
           </span>
           <span className="hidden items-center gap-1.5 sm:inline-flex">
             <Phone className="h-3.5 w-3.5 text-amber-400" />
-            Hotline/Zalo: <span className="font-semibold text-white">Đang cập nhật</span>
+            Hotline/Zalo: <span className="font-semibold text-white">{shop.phone || 'Đang cập nhật'}</span>
           </span>
         </div>
       </div>
@@ -58,7 +61,7 @@ export default function Header() {
             <ShoppingCart className="h-4 w-4" />
             <span className="hidden sm:inline">Giỏ hàng</span>
             <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-400 px-1 text-[11px] font-bold text-stone-900">
-              0
+              {count}
             </span>
           </Link>
         </div>

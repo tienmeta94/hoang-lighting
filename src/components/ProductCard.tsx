@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Star } from 'lucide-react'
+import { Check, ShoppingCart, Star } from 'lucide-react'
 import type { Product } from '../data/products'
 import { categoryName } from '../data/products'
 import { discountPercent, formatVND } from '../lib/format'
+import { useCart } from '../store/cart'
 import ProductImage from './ProductImage'
 
 const badgeStyle: Record<string, string> = {
@@ -14,6 +16,16 @@ const badgeText: Record<string, string> = { hot: 'Bán chạy', new: 'Mới', sa
 
 export default function ProductCard({ product }: { product: Product }) {
   const discount = discountPercent(product.price, product.oldPrice)
+  const { add } = useCart()
+  const [justAdded, setJustAdded] = useState(false)
+
+  const quickAdd = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    add(product.id, 1)
+    setJustAdded(true)
+    window.setTimeout(() => setJustAdded(false), 1500)
+  }
   return (
     <Link
       to={`/san-pham/${product.slug}`}
@@ -46,11 +58,25 @@ export default function ProductCard({ product }: { product: Product }) {
           <span className="font-medium text-stone-700">{product.rating.toFixed(1)}</span>
           <span>· Đã bán {product.sold}</span>
         </div>
-        <div className="mt-auto pt-1">
-          <span className="text-lg font-bold text-red-600">{formatVND(product.price)}</span>
-          {product.oldPrice && (
-            <span className="ml-2 text-sm text-stone-400 line-through">{formatVND(product.oldPrice)}</span>
-          )}
+        <div className="mt-auto flex items-end justify-between gap-2 pt-1">
+          <div>
+            <span className="text-lg font-bold text-red-600">{formatVND(product.price)}</span>
+            {product.oldPrice && (
+              <span className="ml-2 text-sm text-stone-400 line-through">{formatVND(product.oldPrice)}</span>
+            )}
+          </div>
+          <button
+            onClick={quickAdd}
+            aria-label={`Thêm ${product.name} vào giỏ`}
+            title="Thêm vào giỏ"
+            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition ${
+              justAdded
+                ? 'bg-emerald-500 text-white'
+                : 'bg-amber-400 text-stone-900 hover:bg-amber-300'
+            }`}
+          >
+            {justAdded ? <Check className="h-4 w-4" /> : <ShoppingCart className="h-4 w-4" />}
+          </button>
         </div>
       </div>
     </Link>
