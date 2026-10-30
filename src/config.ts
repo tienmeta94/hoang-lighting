@@ -4,8 +4,9 @@
 // người thấy; quyền sửa dữ liệu được khoá bằng đăng nhập admin + RLS).
 // Cũng có thể đặt qua biến môi trường VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY.
 export const supabaseConfig = {
-  url: '',
-  anonKey: '',
+  url: 'https://luokelolcedycuvfzqeb.supabase.co',
+  anonKey:
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx1b2tlbG9sY2VkeWN1dmZ6cWViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzMzI1NTgsImV4cCI6MjEwODkwODU1OH0.mXS-Bzy4HxEa7SOpWZpNVBOp39TiQBbFlOaQ1rS93IE',
 }
 
 // Thông tin liên hệ của shop.
