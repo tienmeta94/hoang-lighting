@@ -57,7 +57,7 @@ const testimonials = [
   },
 ]
 
-const marqueeItems = [
+const benefitItems = [
   'Miễn phí giao hàng cho đơn từ 500.000đ',
   'Bảo hành 6–24 tháng',
   'Lỗi 1 đổi 1 trong 30 ngày',
@@ -82,21 +82,6 @@ function SectionTitle({ title, sub, linkTo }: { title: string; sub?: string; lin
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
         </Link>
       )}
-    </div>
-  )
-}
-
-function MarqueeHalf({ hidden }: { hidden?: boolean }) {
-  return (
-    <div aria-hidden={hidden} className="flex shrink-0 items-center">
-      {marqueeItems.map((item) => (
-        <span
-          key={item}
-          className="inline-flex items-center gap-2 whitespace-nowrap px-5 text-sm font-semibold text-stone-900"
-        >
-          <Sparkle className="h-3.5 w-3.5 fill-stone-900" /> {item}
-        </span>
-      ))}
     </div>
   )
 }
@@ -192,11 +177,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Dải cam kết chạy ngang */}
-      <div className="marquee-paused overflow-hidden bg-amber-400 py-2.5" role="marquee" aria-label="Cam kết của cửa hàng">
-        <div className="animate-marquee flex w-max">
-          <MarqueeHalf />
-          <MarqueeHalf hidden />
+      {/* Thanh cam kết (tĩnh — bản chạy chữ trước đây bị phản ánh là rối mắt) */}
+      <div className="bg-amber-400 py-3" aria-label="Cam kết của cửa hàng">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4">
+          {benefitItems.map((item) => (
+            <span
+              key={item}
+              className="inline-flex items-center gap-2 text-sm font-semibold text-stone-900"
+            >
+              <Sparkle className="h-3.5 w-3.5 shrink-0 fill-stone-900" /> {item}
+            </span>
+          ))}
         </div>
       </div>
 

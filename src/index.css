@@ -105,22 +105,6 @@ button:not(:disabled) {
   animation: glow-pulse 6s ease-in-out infinite;
 }
 
-/* Dải chữ chạy ngang (marquee) — nội dung được nhân đôi để lặp liền mạch */
-@keyframes marquee-x {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-.animate-marquee {
-  animation: marquee-x 26s linear infinite;
-}
-.marquee-paused:hover .animate-marquee {
-  animation-play-state: paused;
-}
-
 /* Chuyển trang: nội dung trang mới mờ/hiện lên nhanh */
 @keyframes page-in {
   from {
@@ -162,7 +146,6 @@ button:not(:disabled) {
   .animate-fade-up,
   .animate-float-slow,
   .animate-glow,
-  .animate-marquee,
   .page-enter {
     animation: none;
   }
