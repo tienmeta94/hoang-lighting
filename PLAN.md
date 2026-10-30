@@ -1,6 +1,6 @@
 # Kế hoạch xây dựng web Hoang Lighting — giới thiệu & bán đèn online
 
-> Trạng thái: BẢN KẾ HOẠCH, chờ duyệt trước khi code.
+> Trạng thái: ĐÃ DUYỆT (2026-10-30). M1 hoàn thành — web đã live tại https://tienmeta94.github.io/hoang-lighting/
 > Repo: tienmeta94/hoang-lighting — sản phẩm: đèn năng lượng mặt trời, đèn LED, đèn nháy, đèn trang trí.
 
 ## 1. Mục tiêu
@@ -50,7 +50,7 @@ Thông số riêng theo loại (hiển thị ở trang chi tiết):
 
 | Mốc | Việc | Đầu ra |
 |---|---|---|
-| M1 — Khung + deploy | Khởi tạo project Vite/React/TS + Tailwind, layout (header/footer), trang chủ với dữ liệu mẫu, GitHub Actions deploy GitHub Pages | Link web live chạy được |
+| M1 — Khung + deploy ✅ | Khởi tạo project Vite/React/TS + Tailwind, layout (header/footer), trang chủ với dữ liệu mẫu, GitHub Actions deploy GitHub Pages | Link web live chạy được |
 | M2 — Mua sắm | Trang danh sách + lọc/tìm/sắp xếp, trang chi tiết, sản phẩm liên quan | Khách duyệt và xem được toàn bộ hàng |
 | M3 — Bán hàng | Giỏ hàng (localStorage), form đặt hàng, gửi đơn qua Zalo + email | Đặt hàng được thật |
 | M4 — Hoàn thiện | Nhập sản phẩm thật (tên/giá/ảnh/thông số), responsive, SEO cơ bản (title/meta/Open Graph/sitemap), nút chat Zalo nổi | Sẵn sàng chia sẻ link bán hàng |

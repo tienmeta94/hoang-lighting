@@ -10,4 +10,4 @@ Repo khởi tạo để thử vòng làm việc với Muse: code → commit → 
 ## Trạng thái
 - Repo public. Commit đầu tiên đã được Muse push lên nhánh `main` qua GitHub API (token fine-grained chỉ cho repo này, quyền Contents Read/Write).
 - Vòng thử nghiệm code → commit → push đã thông suốt.
-- M1 (khung + trang chủ + dữ liệu mẫu) đã code xong, đang bật deploy tự động lên GitHub Pages.
+- M1 (khung + trang chủ + dữ liệu mẫu) đã hoàn thành và live trên GitHub Pages, deploy tự động qua GitHub Actions.
